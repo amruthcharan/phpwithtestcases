@@ -1,0 +1,7 @@
+{
+    "name": "vamsi/phpwithtestcases",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

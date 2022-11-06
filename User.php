@@ -7,7 +7,7 @@ use InvalidArgumentException;
 class User
 {
     public $age;
-    public $favorite_subjects = [];
+    private $favorite_subjects = [];
     public $name;
 
 

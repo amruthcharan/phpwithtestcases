@@ -16,7 +16,7 @@ final class UserTest extends TestCase
 
         $this->assertSame('Vamsi', $user->name);
         $this->assertSame(18, $user->age);
-        $this->assertEmpty($user->favorite_subjects);
+        $this->assertEmpty($user->getFavourateSubjects());
     }
 
     public function testGetName()
@@ -38,7 +38,7 @@ final class UserTest extends TestCase
         $user = new User(18, 'Vamsi');
 
         $this->assertTrue($user->addFavoriteSubject('Maths'));
-        $this->assertSame(['Maths'], $user->favorite_subjects);
+        $this->assertSame(['Maths'], $user->getFavourateSubjects());
     }
 
     public function testRemoveFavoriteSubject()
@@ -50,41 +50,5 @@ final class UserTest extends TestCase
 
         $this->assertTrue($user->removeFavoriteSubject('Science'));
         $this->assertSame(['Maths'], $user->getFavourateSubjects());
-    }
-
-    public function testRemoveFavoriteSubjectException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $user = new User(18, 'Vamsi');
-
-        $user->addFavoriteSubject('Maths');
-        $user->addFavoriteSubject('Science');
-
-        $user->removeFavoriteSubject('Physics');
-    }
-
-    public function testRemoveFavoriteSubjectExceptionMessage()
-    {
-        $this->expectExceptionMessage('Unknown subject: Physics');
-
-        $user = new User(18, 'Vamsi');
-
-        $user->addFavoriteSubject('Maths');
-        $user->addFavoriteSubject('Science');
-
-        $user->removeFavoriteSubject('Physics');
-    }
-
-    public function testRemoveFavoriteSubjectExceptionCode()
-    {
-        $this->expectExceptionCode(0);
-
-        $user = new User(18, 'Vamsi');
-
-        $user->addFavoriteSubject('Maths');
-        $user->addFavoriteSubject('Science');
-
-        $user->removeFavoriteSubject('Physics');
     }
 }

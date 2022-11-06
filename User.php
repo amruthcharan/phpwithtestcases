@@ -27,6 +27,11 @@ class User
         return "I am " . $this->age . " years old.";
     }
 
+    public function getFavourateSubjects(): array
+    {
+        return $this->favorite_subjects;
+    }
+
     public function addFavoriteSubject(string $subject): bool
     {
         $this->favorite_subjects[] = $subject;
@@ -38,7 +43,7 @@ class User
     {
         if (!in_array($subject, $this->favorite_subjects)) throw new InvalidArgumentException("Unknown subject: " . $subject);
 
-        unset($this->favorite_subjects[array_search($subject, $this->favorite_subjects)]);
+        $this->favorite_subjects = array_diff($this->favorite_subjects, [$subject]);
 
         return true;
     }

@@ -6,6 +6,7 @@ include_once 'User.php';
 
 use PHPUnit\Framework\TestCase;
 use vamsi\phpwithtestcases\User;
+use InvalidArgumentException;
 
 final class UserTest extends TestCase
 {
@@ -47,8 +48,8 @@ final class UserTest extends TestCase
         $user->addFavoriteSubject('Maths');
         $user->addFavoriteSubject('Science');
 
-        $this->assertTrue($user->removeFavoriteSubject('Maths'));
-        $this->assertSame(['Science'], $user->favorite_subjects);
+        $this->assertTrue($user->removeFavoriteSubject('Science'));
+        $this->assertSame(['Maths'], $user->getFavourateSubjects());
     }
 
     public function testRemoveFavoriteSubjectException()
